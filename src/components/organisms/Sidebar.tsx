@@ -89,7 +89,9 @@ export function Sidebar() {
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
         ModalProps={{ keepMounted: true }}
-        sx={{ [`& .MuiDrawer-paper`]: { width: SIDEBAR_WIDTH, border: 'none' } }}
+        sx={{
+          [`& .MuiDrawer-paper`]: { width: '85vw', maxWidth: SIDEBAR_WIDTH, border: 'none' },
+        }}
       >
         {content}
       </Drawer>

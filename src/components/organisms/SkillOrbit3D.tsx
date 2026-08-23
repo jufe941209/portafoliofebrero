@@ -1,4 +1,4 @@
-import { Box, keyframes } from '@mui/material'
+import { Box, Chip, keyframes, useMediaQuery, useTheme } from '@mui/material'
 import { palette } from '../../theme/theme'
 
 const spin = keyframes`
@@ -11,7 +11,44 @@ interface SkillOrbit3DProps {
 }
 
 export function SkillOrbit3D({ items }: SkillOrbit3DProps) {
+  const theme = useTheme()
+  const isXs = useMediaQuery(theme.breakpoints.down('sm'))
+
+  if (isXs) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 1,
+          overflowX: 'auto',
+          my: 1,
+          py: 1,
+          px: 0.5,
+          '&::-webkit-scrollbar': { height: 6 },
+          '&::-webkit-scrollbar-thumb': { bgcolor: 'rgba(255,255,255,0.24)', borderRadius: 4 },
+        }}
+        data-aos="fade-up"
+      >
+        {items.map((item) => (
+          <Chip
+            key={item}
+            label={item}
+            size="small"
+            sx={{
+              flexShrink: 0,
+              fontWeight: 700,
+              color: palette.brandDark,
+              bgcolor: 'rgba(255,255,255,0.95)',
+              border: `1px solid ${palette.accent}`,
+            }}
+          />
+        ))}
+      </Box>
+    )
+  }
+
   const radius = 240
+  const itemWidth = 180
   const angleStep = 360 / items.length
 
   return (
@@ -44,8 +81,8 @@ export function SkillOrbit3D({ items }: SkillOrbit3DProps) {
               position: 'absolute',
               top: '50%',
               left: '50%',
-              width: 180,
-              ml: '-90px',
+              width: itemWidth,
+              ml: `-${itemWidth / 2}px`,
               mt: '-20px',
               textAlign: 'center',
               py: 1,

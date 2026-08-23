@@ -12,7 +12,10 @@ export function MainLayout({ children }: MainLayoutProps) {
   return (
     <Box sx={{ display: 'flex' }}>
       <Sidebar />
-      <Box component="main" sx={{ flex: 1, width: { lg: `calc(100% - ${SIDEBAR_WIDTH}px)` } }}>
+      <Box
+        component="main"
+        sx={{ flex: 1, minWidth: 0, width: { lg: `calc(100% - ${SIDEBAR_WIDTH}px)` } }}
+      >
         {children}
       </Box>
       <ScrollToTopButton />

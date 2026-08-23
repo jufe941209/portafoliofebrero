@@ -10,7 +10,7 @@ export function StatsSection() {
       <Box sx={{ maxWidth: 1100, mx: 'auto', px: 3 }}>
         <Grid container spacing={3}>
           {stats.map((stat) => (
-            <Grid item xs={6} md={4} key={stat.label}>
+            <Grid item xs={12} sm={6} md={4} key={stat.label}>
               <Tilt3D intensity={8} borderRadius={16}>
                 <Box
                   sx={{

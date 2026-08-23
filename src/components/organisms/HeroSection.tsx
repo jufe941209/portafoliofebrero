@@ -17,7 +17,7 @@ export function HeroSection() {
       id="hero"
       sx={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: ['100vh', '100dvh'],
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

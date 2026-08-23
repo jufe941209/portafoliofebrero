@@ -42,7 +42,8 @@ export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: { scrollBehavior: 'smooth' },
+        html: { overflowX: 'hidden', width: '100%' },
+        body: { scrollBehavior: 'smooth', overflowX: 'hidden', width: '100%' },
         a: { color: colors.accent, textDecoration: 'none' },
         'a:hover': { color: colors.accentHover },
       },
