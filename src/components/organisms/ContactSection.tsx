@@ -14,8 +14,11 @@ import {
 } from '@mui/material'
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead'
 import PublicIcon from '@mui/icons-material/Public'
+import SendIcon from '@mui/icons-material/Send'
+import VerifiedIcon from '@mui/icons-material/Verified'
 import { SectionTitle } from '../atoms/SectionTitle'
 import { ContactInfoRow } from '../molecules/ContactInfoRow'
+import { profile } from '../../data/profile'
 import { palette } from '../../theme/theme'
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined
@@ -34,37 +37,56 @@ export function ContactSection() {
     }
 
     setStatus('loading')
-    const formData = new FormData(event.currentTarget)
-    const payload = Object.fromEntries(formData.entries())
-    payload.access_key = WEB3FORMS_ACCESS_KEY
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY)
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(payload),
+        body: formData,
       })
       const result = await response.json()
       setStatus(result.success ? 'success' : 'error')
-      if (result.success) event.currentTarget.reset()
+      if (result.success) form.reset()
     } catch {
       setStatus('error')
     }
   }
 
   return (
-    <Box component="section" id="contact" sx={{ py: 8, backgroundImage: palette.sidebarGradient }}>
+    <Box component="section" id="contact" sx={{ py: { xs: 8, md: 10 }, backgroundImage: palette.sidebarGradient }}>
       <Container maxWidth="lg">
-        <SectionTitle title="Contacto" light />
+        <SectionTitle
+          title="Contacto"
+          subtitle="¿Tienes un proyecto o una oportunidad en mente? Escríbeme — este formulario funciona de verdad y tu mensaje llega directo a mi correo."
+          light
+        />
 
-        <Grid container spacing={5}>
+        <Grid container spacing={{ xs: 4, md: 5 }} alignItems="stretch">
           <Grid item xs={12} md={5} data-aos="fade-right">
-            <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.85)', mb: 3 }}>
-              ¿Quieres contactarme? Escríbeme por este formulario y el mensaje llegará directo a mi correo
-              electrónico. Este canal está activo y funcional — te respondo lo antes posible.
+            <Chip
+              icon={<VerifiedIcon sx={{ color: `${palette.accent} !important`, fontSize: 18 }} />}
+              label="Canal activo — respondo personalmente en menos de 24h"
+              sx={{
+                bgcolor: 'rgba(255,255,255,0.14)',
+                color: '#fff',
+                fontWeight: 700,
+                mb: 3,
+                height: 'auto',
+                py: 1,
+                px: 0.5,
+                fontSize: { xs: 12.5, sm: 13 },
+                '& .MuiChip-label': { whiteSpace: 'normal', display: 'block', lineHeight: 1.4 },
+              }}
+            />
+
+            <Typography
+              variant="body1"
+              sx={{ color: 'rgba(255,255,255,0.88)', mb: 3, fontSize: { xs: 15, md: 16 }, lineHeight: 1.7 }}
+            >
+              Cuéntame sobre tu proyecto, una vacante o simplemente escríbeme para conectar — leo cada mensaje
+              y te respondo yo mismo, no un bot.
             </Typography>
 
             <ContactInfoRow
@@ -93,7 +115,25 @@ export function ContactSection() {
           </Grid>
 
           <Grid item xs={12} md={7} data-aos="fade-left">
-            <Paper elevation={0} sx={{ p: { xs: 3, md: 4 }, borderRadius: 3 }}>
+            <Paper
+              elevation={0}
+              sx={{
+                position: 'relative',
+                overflow: 'hidden',
+                p: { xs: 3, sm: 4 },
+                borderRadius: 4,
+                boxShadow: '0 24px 60px rgba(9,8,30,0.35)',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: 6,
+                  backgroundImage: `linear-gradient(90deg, ${palette.brandStart}, ${palette.accent})`,
+                },
+              }}
+            >
               {!WEB3FORMS_ACCESS_KEY && (
                 <Alert severity="warning" sx={{ mb: 2 }}>
                   El formulario aún no tiene configurada la clave de envío — vuelve a intentarlo más tarde.
@@ -116,23 +156,45 @@ export function ContactSection() {
                 </Grid>
 
                 <Stack sx={{ mt: 3 }} spacing={2}>
-                  {status === 'success' && <Alert severity="success">Tu mensaje ha sido enviado. ¡Gracias!</Alert>}
+                  {status === 'success' && (
+                    <Alert severity="success" variant="filled">
+                      ¡Mensaje enviado con éxito! Ya está en mi bandeja de entrada — te responderé pronto.
+                    </Alert>
+                  )}
                   {status === 'error' && (
-                    <Alert severity="error">Hubo un error al enviar el mensaje. Intenta de nuevo.</Alert>
+                    <Alert severity="error" variant="filled">
+                      Hubo un problema al confirmar el envío. Si el mensaje no llegó, escríbeme directo a{' '}
+                      <Box
+                        component="a"
+                        href={`mailto:${profile.email}`}
+                        sx={{ color: 'inherit', fontWeight: 700, textDecoration: 'underline' }}
+                      >
+                        {profile.email}
+                      </Box>
+                      .
+                    </Alert>
                   )}
                   <Box sx={{ textAlign: 'center' }}>
                     <Button
                       type="submit"
                       variant="contained"
+                      size="large"
                       disabled={status === 'loading'}
-                      sx={{ px: 5, py: 1.25 }}
+                      endIcon={status === 'loading' ? null : <SendIcon />}
+                      sx={{
+                        px: 6,
+                        py: 1.5,
+                        fontSize: 16,
+                        width: { xs: '100%', sm: 'auto' },
+                        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                        '&:hover': { transform: 'translateY(-2px)' },
+                      }}
                     >
-                      {status === 'loading' ? (
-                        <CircularProgress size={20} sx={{ color: '#fff' }} />
-                      ) : (
-                        'Enviar mensaje'
-                      )}
+                      {status === 'loading' ? <CircularProgress size={22} sx={{ color: '#fff' }} /> : 'Enviar mensaje'}
                     </Button>
+                    <Typography variant="caption" sx={{ display: 'block', mt: 1.5, color: 'text.secondary' }}>
+                      📩 Tu mensaje llega directo a mi correo — sin intermediarios.
+                    </Typography>
                   </Box>
                 </Stack>
               </Box>
