@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { Box, IconButton, Stack } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import type { CompactProject } from '../../data/projects'
@@ -13,6 +14,7 @@ interface ProjectsCarouselProps {
 }
 
 export function ProjectsCarousel({ projects, light = false }: ProjectsCarouselProps) {
+  const { t } = useTranslation()
   const trackRef = useRef<HTMLDivElement | null>(null)
   const [selected, setSelected] = useState<CompactProject | null>(null)
 
@@ -35,10 +37,10 @@ export function ProjectsCarousel({ projects, light = false }: ProjectsCarouselPr
   return (
     <Box sx={{ position: 'relative' }} data-aos="fade-up">
       <Stack direction="row" justifyContent="flex-end" spacing={1} sx={{ mb: 1.5 }}>
-        <IconButton onClick={() => scrollByCard(-1)} aria-label="Anterior" sx={arrowSx}>
+        <IconButton onClick={() => scrollByCard(-1)} aria-label={t('common.previous')} sx={arrowSx}>
           <ArrowBackIosNewIcon fontSize="small" />
         </IconButton>
-        <IconButton onClick={() => scrollByCard(1)} aria-label="Siguiente" sx={arrowSx}>
+        <IconButton onClick={() => scrollByCard(1)} aria-label={t('common.next')} sx={arrowSx}>
           <ArrowForwardIosIcon fontSize="small" />
         </IconButton>
       </Stack>

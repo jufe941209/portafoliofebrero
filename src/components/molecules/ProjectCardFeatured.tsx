@@ -1,4 +1,5 @@
 import { Box, Button, Card, CardContent, Chip, Stack, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import type { FeaturedProject } from '../../data/projects'
 import { palette } from '../../theme/theme'
@@ -10,6 +11,9 @@ interface ProjectCardFeaturedProps {
 }
 
 export function ProjectCardFeatured({ project }: ProjectCardFeaturedProps) {
+  const { t } = useTranslation()
+  const mockFeatures = t('projects.featuredMockFeatures', { returnObjects: true }) as string[]
+
   return (
     <Tilt3D intensity={4} borderRadius={14} sx={{ mb: 4 }}>
     <Card sx={{ display: { xs: 'block', md: 'flex' }, height: '100%', boxShadow: 6 }} data-aos="fade-up">
@@ -19,12 +23,12 @@ export function ProjectCardFeatured({ project }: ProjectCardFeaturedProps) {
           brand={project.brand}
           accentFrom={project.accentFrom}
           accentTo={project.accentTo}
-          features={['Catálogo', 'Login por rol', 'Portal domiciliario', 'Panel admin']}
+          features={mockFeatures}
         />
       </Box>
       <CardContent sx={{ flex: 1 }}>
         <Typography variant="overline" sx={{ color: palette.accent, fontWeight: 700 }}>
-          Proyecto destacado
+          {t('projects.featuredBadge')}
         </Typography>
         <Typography variant="h4" sx={{ fontSize: 22 }}>
           {project.title}
@@ -52,7 +56,7 @@ export function ProjectCardFeatured({ project }: ProjectCardFeaturedProps) {
           endIcon={<OpenInNewIcon />}
           sx={{ bgcolor: palette.accent, '&:hover': { bgcolor: palette.accentHover } }}
         >
-          Ver proyecto
+          {t('projects.viewProject')}
         </Button>
       </CardContent>
     </Card>

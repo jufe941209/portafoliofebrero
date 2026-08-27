@@ -1,4 +1,5 @@
 import { Box, Chip, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike'
 import CodeIcon from '@mui/icons-material/Code'
 import type { JourneyMilestone } from '../../data/journey'
@@ -6,7 +7,6 @@ import { palette } from '../../theme/theme'
 
 const TRACK_COLOR = { sport: '#F97316', tech: palette.accent }
 const TRACK_ICON = { sport: DirectionsBikeIcon, tech: CodeIcon }
-const TRACK_LABEL = { sport: 'Carrera deportiva', tech: 'Carrera tech' }
 
 interface JourneyMilestoneCardProps {
   milestone: JourneyMilestone
@@ -14,8 +14,10 @@ interface JourneyMilestoneCardProps {
 }
 
 export function JourneyMilestoneCard({ milestone, align }: JourneyMilestoneCardProps) {
+  const { t } = useTranslation()
   const color = TRACK_COLOR[milestone.track]
   const Icon = TRACK_ICON[milestone.track]
+  const trackLabel = milestone.track === 'sport' ? t('journey.trackSport') : t('journey.trackTech')
 
   return (
     <Box
@@ -29,7 +31,7 @@ export function JourneyMilestoneCard({ milestone, align }: JourneyMilestoneCardP
       <Box sx={{ maxWidth: 380, width: '100%' }}>
         <Chip
           icon={<Icon sx={{ color: '#fff !important', fontSize: 16 }} />}
-          label={`${milestone.year} · ${TRACK_LABEL[milestone.track]}`}
+          label={`${milestone.year} · ${trackLabel}`}
           size="small"
           sx={{ bgcolor: color, color: '#fff', mb: 1, fontWeight: 700 }}
         />

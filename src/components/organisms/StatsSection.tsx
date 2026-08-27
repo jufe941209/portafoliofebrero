@@ -1,10 +1,12 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { AnimatedCounter } from '../atoms/AnimatedCounter'
 import { Tilt3D } from '../atoms/Tilt3D'
-import { stats } from '../../data/stats'
+import { useStats } from '../../data/stats'
 import { palette } from '../../theme/theme'
 
 export function StatsSection() {
+  const stats = useStats()
+
   return (
     <Box sx={{ py: 8, backgroundImage: palette.sidebarGradient, color: '#fff' }}>
       <Box sx={{ maxWidth: 1100, mx: 'auto', px: 3 }}>

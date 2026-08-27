@@ -1,14 +1,19 @@
 import { Box, Container, Grid, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '../atoms/SectionTitle'
 import { CertificationBadgeCard } from '../molecules/CertificationBadgeCard'
-import { certifications, languages } from '../../data/education'
+import { useCertifications, useLanguages } from '../../data/education'
 import { palette } from '../../theme/theme'
 
 export function CertificationsSection() {
+  const { t } = useTranslation()
+  const certifications = useCertifications()
+  const languages = useLanguages()
+
   return (
     <Box component="section" id="certifications" sx={{ py: 8, bgcolor: '#ffffff' }}>
       <Container maxWidth="lg">
-        <SectionTitle title="Certificaciones" subtitle="Formación continua en datos, IA y desarrollo de software." />
+        <SectionTitle title={t('certifications.title')} subtitle={t('certifications.subtitle')} />
 
         <Grid container spacing={3}>
           {certifications.map((cert) => (
@@ -20,10 +25,10 @@ export function CertificationsSection() {
 
         <Box sx={{ textAlign: 'center', mt: 5 }} data-aos="fade-up">
           <Typography variant="subtitle1" sx={{ fontWeight: 700, color: palette.sidebar }}>
-            Idiomas
+            {t('certifications.languages')}
           </Typography>
           {languages.map((lang) => (
-            <Typography key={lang.level} variant="body2" color="text.secondary">
+            <Typography key={lang.language + lang.level} variant="body2" color="text.secondary">
               <strong>{lang.language}:</strong> {lang.level}
             </Typography>
           ))}

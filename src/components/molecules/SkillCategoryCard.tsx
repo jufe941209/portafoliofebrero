@@ -8,19 +8,19 @@ import FactCheckIcon from '@mui/icons-material/FactCheck'
 import SecurityIcon from '@mui/icons-material/Security'
 import TranslateIcon from '@mui/icons-material/Translate'
 import type { SvgIconComponent } from '@mui/icons-material'
-import type { SkillGroup } from '../../data/skills'
+import type { SkillGroup, SkillGroupId } from '../../data/skills'
 import { Tilt3D } from '../atoms/Tilt3D'
 import { palette } from '../../theme/theme'
 
-const CATEGORY_ICONS: Record<string, SvgIconComponent> = {
-  Frontend: WebIcon,
-  Backend: DnsIcon,
-  'Bases de datos': StorageIcon,
-  'DevOps y Herramientas': BuildIcon,
-  'IA y Datos': PsychologyIcon,
-  'Testing y Documentación': FactCheckIcon,
-  Seguridad: SecurityIcon,
-  Idiomas: TranslateIcon,
+const CATEGORY_ICONS: Record<SkillGroupId, SvgIconComponent> = {
+  frontend: WebIcon,
+  backend: DnsIcon,
+  databases: StorageIcon,
+  devops: BuildIcon,
+  'ai-data': PsychologyIcon,
+  testing: FactCheckIcon,
+  security: SecurityIcon,
+  languages: TranslateIcon,
 }
 
 interface SkillCategoryCardProps {
@@ -28,7 +28,7 @@ interface SkillCategoryCardProps {
 }
 
 export function SkillCategoryCard({ group }: SkillCategoryCardProps) {
-  const Icon = CATEGORY_ICONS[group.category] ?? WebIcon
+  const Icon = CATEGORY_ICONS[group.id] ?? WebIcon
 
   return (
     <Tilt3D intensity={8} borderRadius={16} sx={{ height: '100%' }}>

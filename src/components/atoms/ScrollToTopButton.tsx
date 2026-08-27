@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Fab, Zoom } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { palette } from '../../theme/theme'
 
 export function ScrollToTopButton() {
+  const { t } = useTranslation()
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export function ScrollToTopButton() {
     <Zoom in={visible}>
       <Fab
         size="medium"
-        aria-label="Volver arriba"
+        aria-label={t('common.backToTop')}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         sx={{
           position: 'fixed',

@@ -12,13 +12,14 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead'
 import PublicIcon from '@mui/icons-material/Public'
 import SendIcon from '@mui/icons-material/Send'
 import VerifiedIcon from '@mui/icons-material/Verified'
 import { SectionTitle } from '../atoms/SectionTitle'
 import { ContactInfoRow } from '../molecules/ContactInfoRow'
-import { profile } from '../../data/profile'
+import { useProfile } from '../../data/profile'
 import { palette } from '../../theme/theme'
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined
@@ -26,7 +27,10 @@ const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | unde
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error'
 
 export function ContactSection() {
+  const { t } = useTranslation()
+  const profile = useProfile()
   const [status, setStatus] = useState<SubmitStatus>('idle')
+  const tags = t('contact.tags', { returnObjects: true }) as string[]
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -57,17 +61,13 @@ export function ContactSection() {
   return (
     <Box component="section" id="contact" sx={{ py: { xs: 8, md: 10 }, backgroundImage: palette.sidebarGradient }}>
       <Container maxWidth="lg">
-        <SectionTitle
-          title="Contacto"
-          subtitle="¿Tienes un proyecto o una oportunidad en mente? Escríbeme — este formulario funciona de verdad y tu mensaje llega directo a mi correo."
-          light
-        />
+        <SectionTitle title={t('contact.title')} subtitle={t('contact.subtitle')} light />
 
         <Grid container spacing={{ xs: 4, md: 5 }} alignItems="stretch">
           <Grid item xs={12} md={5} data-aos="fade-right">
             <Chip
               icon={<VerifiedIcon sx={{ color: `${palette.accent} !important`, fontSize: 18 }} />}
-              label="Canal activo — respondo personalmente en menos de 24h"
+              label={t('contact.trustBadge')}
               sx={{
                 bgcolor: 'rgba(255,255,255,0.14)',
                 color: '#fff',
@@ -85,25 +85,24 @@ export function ContactSection() {
               variant="body1"
               sx={{ color: 'rgba(255,255,255,0.88)', mb: 3, fontSize: { xs: 15, md: 16 }, lineHeight: 1.7 }}
             >
-              Cuéntame sobre tu proyecto, una vacante o simplemente escríbeme para conectar — leo cada mensaje
-              y te respondo yo mismo, no un bot.
+              {t('contact.intro')}
             </Typography>
 
             <ContactInfoRow
               icon={MarkEmailReadIcon}
-              label="Correo directo"
-              value="El formulario envía el mensaje a mi bandeja de entrada al instante."
+              label={t('contact.directEmail')}
+              value={t('contact.directEmailValue')}
               light
             />
             <ContactInfoRow
               icon={PublicIcon}
-              label="Zona horaria"
-              value="Colombia (GMT-5) — disponible para coordinar con equipos internacionales."
+              label={t('contact.timezone')}
+              value={t('contact.timezoneValue')}
               light
             />
 
             <Stack direction="row" flexWrap="wrap" gap={1} sx={{ mt: 2 }}>
-              {['Remoto', 'Freelance', 'Tiempo completo', 'Async-first'].map((tag) => (
+              {tags.map((tag) => (
                 <Chip
                   key={tag}
                   label={tag}
@@ -136,34 +135,34 @@ export function ContactSection() {
             >
               {!WEB3FORMS_ACCESS_KEY && (
                 <Alert severity="warning" sx={{ mb: 2 }}>
-                  El formulario aún no tiene configurada la clave de envío — vuelve a intentarlo más tarde.
+                  {t('contact.form.missingKey')}
                 </Alert>
               )}
               <Box component="form" onSubmit={handleSubmit} noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <TextField name="name" label="Tu nombre" fullWidth required />
+                    <TextField name="name" label={t('contact.form.name')} fullWidth required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField name="email" type="email" label="Tu email" fullWidth required />
+                    <TextField name="email" type="email" label={t('contact.form.email')} fullWidth required />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField name="subject" label="Asunto" fullWidth required />
+                    <TextField name="subject" label={t('contact.form.subject')} fullWidth required />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField name="message" label="Mensaje" fullWidth required multiline rows={6} />
+                    <TextField name="message" label={t('contact.form.message')} fullWidth required multiline rows={6} />
                   </Grid>
                 </Grid>
 
                 <Stack sx={{ mt: 3 }} spacing={2}>
                   {status === 'success' && (
                     <Alert severity="success" variant="filled">
-                      ¡Mensaje enviado con éxito! Ya está en mi bandeja de entrada — te responderé pronto.
+                      {t('contact.form.success')}
                     </Alert>
                   )}
                   {status === 'error' && (
                     <Alert severity="error" variant="filled">
-                      Hubo un problema al confirmar el envío. Si el mensaje no llegó, escríbeme directo a{' '}
+                      {t('contact.form.errorPrefix')}{' '}
                       <Box
                         component="a"
                         href={`mailto:${profile.email}`}
@@ -190,10 +189,10 @@ export function ContactSection() {
                         '&:hover': { transform: 'translateY(-2px)' },
                       }}
                     >
-                      {status === 'loading' ? <CircularProgress size={22} sx={{ color: '#fff' }} /> : 'Enviar mensaje'}
+                      {status === 'loading' ? <CircularProgress size={22} sx={{ color: '#fff' }} /> : t('contact.form.submit')}
                     </Button>
                     <Typography variant="caption" sx={{ display: 'block', mt: 1.5, color: 'text.secondary' }}>
-                      📩 Tu mensaje llega directo a mi correo — sin intermediarios.
+                      {t('contact.form.reassurance')}
                     </Typography>
                   </Box>
                 </Stack>

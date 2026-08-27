@@ -1,4 +1,5 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Chip, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import type { CompactProject } from '../../data/projects'
 import { Tilt3D } from '../atoms/Tilt3D'
@@ -10,6 +11,8 @@ interface ProjectCardCompactProps {
 }
 
 export function ProjectCardCompact({ project, onOpen }: ProjectCardCompactProps) {
+  const { t } = useTranslation()
+
   return (
     <Tilt3D intensity={12} borderRadius={14} sx={{ height: '100%' }}>
       <Card sx={{ height: '100%', boxShadow: 4 }} data-aos="fade-up">
@@ -32,7 +35,7 @@ export function ProjectCardCompact({ project, onOpen }: ProjectCardCompactProps)
             )}
             <Chip
               icon={<VisibilityIcon sx={{ color: '#fff !important', fontSize: 16 }} />}
-              label="Ver detalles"
+              label={t('projects.viewDetails')}
               size="small"
               sx={{
                 position: 'absolute',

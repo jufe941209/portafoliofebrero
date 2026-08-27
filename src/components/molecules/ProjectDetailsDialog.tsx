@@ -10,6 +10,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import CloseIcon from '@mui/icons-material/Close'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import type { CompactProject } from '../../data/projects'
@@ -22,13 +23,15 @@ interface ProjectDetailsDialogProps {
 }
 
 export function ProjectDetailsDialog({ project, onClose }: ProjectDetailsDialogProps) {
+  const { t } = useTranslation()
+
   return (
     <Dialog open={Boolean(project)} onClose={onClose} maxWidth="sm" fullWidth>
       {project && (
         <>
           <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pr: 6 }}>
             {project.title}
-            <IconButton onClick={onClose} sx={{ position: 'absolute', right: 12, top: 12 }} aria-label="Cerrar">
+            <IconButton onClick={onClose} sx={{ position: 'absolute', right: 12, top: 12 }} aria-label={t('projects.close')}>
               <CloseIcon />
             </IconButton>
           </DialogTitle>
@@ -57,7 +60,7 @@ export function ProjectDetailsDialog({ project, onClose }: ProjectDetailsDialogP
             {project.stack && project.stack.length > 0 && (
               <>
                 <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>
-                  Tecnologías
+                  {t('projects.technologies')}
                 </Typography>
                 <Stack direction="row" flexWrap="wrap" gap={1}>
                   {project.stack.map((tech) => (
@@ -80,7 +83,7 @@ export function ProjectDetailsDialog({ project, onClose }: ProjectDetailsDialogP
               variant="contained"
               endIcon={<OpenInNewIcon />}
             >
-              Ver proyecto en vivo
+              {t('projects.viewLive')}
             </Button>
           </DialogActions>
         </>

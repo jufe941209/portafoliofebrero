@@ -1,21 +1,25 @@
 import { Box, Container, Grid, List, ListItem, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { SectionTitle } from '../atoms/SectionTitle'
-import { profile } from '../../data/profile'
+import { useProfile } from '../../data/profile'
 import { palette } from '../../theme/theme'
 
-const facts = [
-  { label: 'GitHub', value: 'github.com/jufe941209' },
-  { label: 'Título', value: profile.degree },
-  { label: 'Disponibilidad', value: profile.freelance },
-  { label: 'Modalidad', value: 'Remoto, async-first' },
-]
-
 export function ProfileSection() {
+  const { t } = useTranslation()
+  const profile = useProfile()
+
+  const facts = [
+    { label: t('profile.facts.github'), value: 'github.com/jufe941209' },
+    { label: t('profile.facts.degree'), value: profile.degree },
+    { label: t('profile.facts.availability'), value: profile.freelance },
+    { label: t('profile.facts.mode'), value: t('profile.facts.modeValue') },
+  ]
+
   return (
     <Box component="section" id="profile" sx={{ py: 8 }}>
       <Container maxWidth="lg">
-        <SectionTitle title="Perfil profesional" />
+        <SectionTitle title={t('profile.title')} />
         <Typography variant="body1" sx={{ mb: 2 }} data-aos="fade-up">
           {profile.summary}
         </Typography>
@@ -34,7 +38,7 @@ export function ProfileSection() {
           </Grid>
           <Grid item xs={12} md={8} data-aos="fade-left">
             <Typography variant="h3" sx={{ fontSize: 22, mb: 2 }}>
-              Desarrollador Fullstack &amp; Entrenador de Alto Rendimiento
+              {t('profile.heading')}
             </Typography>
             <Grid container spacing={1}>
               {facts.map((fact) => (

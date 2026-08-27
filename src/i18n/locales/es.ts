@@ -1,0 +1,103 @@
+export const es = {
+  nav: {
+    profile: 'Perfil profesional',
+    journey: 'Trayectoria',
+    skills: 'Habilidades',
+    experience: 'Experiencia',
+    projects: 'Proyectos',
+    certifications: 'Certificaciones',
+    contact: 'Contacto',
+    openMenu: 'Abrir menú',
+  },
+  common: {
+    downloadCv: 'Descargar CV',
+    backToTop: 'Volver arriba',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+    portfolio: 'Portafolio',
+    contact: 'Contacto',
+    previous: 'Anterior',
+    next: 'Siguiente',
+  },
+  language: {
+    switchTo: 'Cambiar a {{language}}',
+    es: 'Español',
+    en: 'Inglés',
+  },
+  hero: {
+    greeting: 'Soy',
+    highlights: ['Angular', 'React', '.NET / C#', 'IA & Datos'],
+  },
+  profile: {
+    title: 'Perfil profesional',
+    heading: 'Desarrollador Fullstack & Entrenador de Alto Rendimiento',
+    facts: {
+      github: 'GitHub',
+      degree: 'Título',
+      availability: 'Disponibilidad',
+      mode: 'Modalidad',
+      modeValue: 'Remoto, async-first',
+    },
+  },
+  journey: {
+    title: 'Del deporte de elite al código',
+    subtitle:
+      'Dos disciplinas con la misma exigencia: preparación, disciplina de trabajo y mejora continua. Así se ve en una sola línea de tiempo.',
+    trackSport: 'Carrera deportiva',
+    trackTech: 'Carrera tech',
+  },
+  skills: {
+    title: 'Habilidades técnicas',
+    subtitle: 'Stack de frontend, backend, bases de datos, DevOps, IA y datos, testing y seguridad.',
+  },
+  experience: {
+    title: 'Experiencia profesional',
+    work: 'Experiencia laboral',
+    education: 'Educación',
+  },
+  projects: {
+    title: 'Proyectos',
+    subtitle: 'Proyectos desplegados en la nube, desarrollados de forma independiente end-to-end.',
+    other: 'Otros proyectos',
+    featuredBadge: 'Proyecto destacado',
+    viewProject: 'Ver proyecto',
+    viewDetails: 'Ver detalles',
+    viewLive: 'Ver proyecto en vivo',
+    technologies: 'Tecnologías',
+    close: 'Cerrar',
+    featuredMockFeatures: ['Catálogo', 'Login por rol', 'Portal domiciliario', 'Panel admin'],
+  },
+  certifications: {
+    title: 'Certificaciones',
+    subtitle: 'Formación continua en datos, IA y desarrollo de software.',
+    languages: 'Idiomas',
+  },
+  contact: {
+    title: 'Contacto',
+    subtitle:
+      '¿Tienes un proyecto o una oportunidad en mente? Escríbeme — este formulario funciona de verdad y tu mensaje llega directo a mi correo.',
+    trustBadge: 'Canal activo — respondo personalmente en menos de 24h',
+    intro:
+      'Cuéntame sobre tu proyecto, una vacante o simplemente escríbeme para conectar — leo cada mensaje y te respondo yo mismo, no un bot.',
+    directEmail: 'Correo directo',
+    directEmailValue: 'El formulario envía el mensaje a mi bandeja de entrada al instante.',
+    timezone: 'Zona horaria',
+    timezoneValue: 'Colombia (GMT-5) — disponible para coordinar con equipos internacionales.',
+    tags: ['Remoto', 'Freelance', 'Tiempo completo', 'Async-first'],
+    form: {
+      name: 'Tu nombre',
+      email: 'Tu email',
+      subject: 'Asunto',
+      message: 'Mensaje',
+      submit: 'Enviar mensaje',
+      reassurance: '📩 Tu mensaje llega directo a mi correo — sin intermediarios.',
+      success: '¡Mensaje enviado con éxito! Ya está en mi bandeja de entrada — te responderé pronto.',
+      errorPrefix: 'Hubo un problema al confirmar el envío. Si el mensaje no llegó, escríbeme directo a',
+      missingKey: 'El formulario aún no tiene configurada la clave de envío — vuelve a intentarlo más tarde.',
+    },
+  },
+  cv: {
+    back: 'Volver al portafolio',
+    print: 'Imprimir / Guardar PDF',
+  },
+}

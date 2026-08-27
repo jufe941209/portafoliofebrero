@@ -1,16 +1,19 @@
 import { lazy, Suspense } from 'react'
 import { Box, Chip, Stack, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { AnimatedGradientBg } from '../atoms/AnimatedGradientBg'
 import { TypedRole } from '../molecules/TypedRole'
 import { DownloadCvButton } from '../atoms/DownloadCvButton'
-import { profile } from '../../data/profile'
+import { useProfile } from '../../data/profile'
 import { palette } from '../../theme/theme'
 
 const Hero3DObject = lazy(() => import('./Hero3DObject').then((m) => ({ default: m.Hero3DObject })))
 
-const HIGHLIGHTS = ['Angular', 'React', '.NET / C#', 'IA & Datos']
-
 export function HeroSection() {
+  const { t } = useTranslation()
+  const profile = useProfile()
+  const highlights = t('hero.highlights', { returnObjects: true }) as string[]
+
   return (
     <Box
       component="section"
@@ -63,10 +66,10 @@ export function HeroSection() {
           {profile.name.toUpperCase()}
         </Typography>
         <Typography variant="h5" sx={{ mt: 2, fontSize: { xs: 17, md: 22 } }}>
-          Soy <TypedRole strings={profile.typedRoles} />
+          {t('hero.greeting')} <TypedRole strings={profile.typedRoles} />
         </Typography>
         <Stack direction="row" flexWrap="wrap" justifyContent="center" gap={1} sx={{ mt: 3 }}>
-          {HIGHLIGHTS.map((tag) => (
+          {highlights.map((tag) => (
             <Chip
               key={tag}
               label={tag}

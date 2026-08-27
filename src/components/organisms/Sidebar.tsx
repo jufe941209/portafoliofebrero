@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Box, Drawer, IconButton, List, useMediaQuery, useTheme } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import PersonIcon from '@mui/icons-material/Person'
 import TimelineIcon from '@mui/icons-material/Timeline'
@@ -13,21 +14,23 @@ import { SidebarProfile } from '../molecules/SidebarProfile'
 import { useScrollSpy } from '../../hooks/useScrollSpy'
 import { palette, SIDEBAR_WIDTH } from '../../theme/theme'
 
-const NAV_ITEMS = [
-  { id: 'profile', label: 'Perfil profesional', icon: PersonIcon },
-  { id: 'journey', label: 'Trayectoria', icon: TimelineIcon },
-  { id: 'skills', label: 'Habilidades', icon: ArticleIcon },
-  { id: 'experience', label: 'Experiencia', icon: WorkHistoryIcon },
-  { id: 'projects', label: 'Proyectos', icon: DnsIcon },
-  { id: 'certifications', label: 'Certificaciones', icon: WorkspacePremiumIcon },
-  { id: 'contact', label: 'Contacto', icon: MailIcon },
-]
+const NAV_ITEM_ICONS = [
+  { id: 'profile', icon: PersonIcon },
+  { id: 'journey', icon: TimelineIcon },
+  { id: 'skills', icon: ArticleIcon },
+  { id: 'experience', icon: WorkHistoryIcon },
+  { id: 'projects', icon: DnsIcon },
+  { id: 'certifications', icon: WorkspacePremiumIcon },
+  { id: 'contact', icon: MailIcon },
+] as const
 
 export function Sidebar() {
+  const { t } = useTranslation()
   const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const [mobileOpen, setMobileOpen] = useState(false)
-  const activeId = useScrollSpy(NAV_ITEMS.map((item) => item.id))
+  const navItems = NAV_ITEM_ICONS.map((item) => ({ ...item, label: t(`nav.${item.id}`) }))
+  const activeId = useScrollSpy(navItems.map((item) => item.id))
 
   const handleNavigate = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -38,7 +41,7 @@ export function Sidebar() {
     <Box sx={{ backgroundImage: palette.sidebarGradient, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <SidebarProfile />
       <List component="nav" sx={{ px: 2, flex: 1 }}>
-        {NAV_ITEMS.map((item) => (
+        {navItems.map((item) => (
           <NavIconLink
             key={item.id}
             href={item.id}
@@ -80,7 +83,7 @@ export function Sidebar() {
           color: '#fff',
           '&:hover': { bgcolor: palette.sidebar },
         }}
-        aria-label="Abrir menú"
+        aria-label={t('nav.openMenu')}
       >
         <MenuIcon />
       </IconButton>

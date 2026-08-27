@@ -1,20 +1,25 @@
 import { Box, Container, Grid, Stack, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '../atoms/SectionTitle'
 import { ExperienceItemCard } from '../molecules/ExperienceItemCard'
 import { EducationItemCard } from '../molecules/EducationItemCard'
-import { experience } from '../../data/experience'
-import { education } from '../../data/education'
+import { useExperience } from '../../data/experience'
+import { useEducation } from '../../data/education'
 import { palette } from '../../theme/theme'
 
 export function ExperienceSection() {
+  const { t } = useTranslation()
+  const experience = useExperience()
+  const education = useEducation()
+
   return (
     <Box component="section" id="experience" sx={{ py: 8 }}>
       <Container maxWidth="lg">
-        <SectionTitle title="Experiencia profesional" />
+        <SectionTitle title={t('experience.title')} />
         <Grid container spacing={6}>
           <Grid item xs={12} md={7}>
             <Typography variant="h4" sx={{ fontSize: 20, mb: 3, color: palette.sidebar }}>
-              Experiencia laboral
+              {t('experience.work')}
             </Typography>
             <Stack spacing={0}>
               {experience.map((item) => (
@@ -25,7 +30,7 @@ export function ExperienceSection() {
 
           <Grid item xs={12} md={5}>
             <Typography variant="h4" sx={{ fontSize: 20, mb: 3, color: palette.sidebar }}>
-              Educación
+              {t('experience.education')}
             </Typography>
             {education.map((item) => (
               <EducationItemCard key={item.title} item={item} />

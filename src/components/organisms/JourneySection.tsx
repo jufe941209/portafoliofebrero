@@ -1,18 +1,18 @@
 import { Box, Container, Stack } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '../atoms/SectionTitle'
 import { JourneyMilestoneCard } from '../molecules/JourneyMilestoneCard'
-import { journey } from '../../data/journey'
+import { useJourney } from '../../data/journey'
 import { palette } from '../../theme/theme'
 
 export function JourneySection() {
+  const { t } = useTranslation()
+  const journey = useJourney()
+
   return (
     <Box component="section" id="journey" sx={{ py: 8, bgcolor: '#0B1023' }}>
       <Container maxWidth="md">
-        <SectionTitle
-          title="Del deporte de elite al código"
-          subtitle="Dos disciplinas con la misma exigencia: preparación, disciplina de trabajo y mejora continua. Así se ve en una sola línea de tiempo."
-          light
-        />
+        <SectionTitle title={t('journey.title')} subtitle={t('journey.subtitle')} light />
 
         <Box sx={{ position: 'relative' }}>
           <Box
