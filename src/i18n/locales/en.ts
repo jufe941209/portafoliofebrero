@@ -70,7 +70,7 @@ export const en: typeof es = {
     featuredMockFeatures: ['Catalog', 'Role-based Login', 'Delivery Portal', 'Admin Panel'],
   },
   certifications: {
-    title: 'Certifications',
+    title: 'Certifications & Academic Results',
     subtitle: 'Continuous training in data, AI and software development.',
     languages: 'Languages',
   },

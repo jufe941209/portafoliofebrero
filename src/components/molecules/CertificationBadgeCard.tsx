@@ -1,14 +1,19 @@
 import { Box, Typography } from '@mui/material'
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import { Tilt3D } from '../atoms/Tilt3D'
 import type { CertificationItem } from '../../data/education'
 import { palette } from '../../theme/theme'
+
+const GOLD = '#F5B800'
 
 interface CertificationBadgeCardProps {
   cert: CertificationItem
 }
 
 export function CertificationBadgeCard({ cert }: CertificationBadgeCardProps) {
+  const isAchievement = cert.variant === 'achievement'
+
   return (
     <Tilt3D intensity={14} borderRadius={16} sx={{ height: '100%' }}>
       <Box
@@ -17,9 +22,9 @@ export function CertificationBadgeCard({ cert }: CertificationBadgeCardProps) {
           textAlign: 'center',
           p: 3,
           borderRadius: 4,
-          bgcolor: '#fff',
-          boxShadow: '0 10px 24px rgba(30,27,75,0.1)',
-          border: '1px solid rgba(0,0,0,0.06)',
+          bgcolor: isAchievement ? '#FFFBEB' : '#fff',
+          boxShadow: isAchievement ? `0 10px 24px rgba(245,184,0,0.22)` : '0 10px 24px rgba(30,27,75,0.1)',
+          border: isAchievement ? `1px solid ${GOLD}` : '1px solid rgba(0,0,0,0.06)',
         }}
         data-aos="zoom-in"
       >
@@ -33,10 +38,14 @@ export function CertificationBadgeCard({ cert }: CertificationBadgeCardProps) {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: '50%',
-            backgroundImage: palette.sidebarGradient,
+            backgroundImage: isAchievement ? `linear-gradient(135deg, ${GOLD}, #B8860B)` : palette.sidebarGradient,
           }}
         >
-          <WorkspacePremiumIcon sx={{ color: '#fff' }} />
+          {isAchievement ? (
+            <EmojiEventsIcon sx={{ color: '#fff' }} />
+          ) : (
+            <WorkspacePremiumIcon sx={{ color: '#fff' }} />
+          )}
         </Box>
         <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
           {cert.title}
@@ -44,7 +53,7 @@ export function CertificationBadgeCard({ cert }: CertificationBadgeCardProps) {
         <Typography variant="body2" color="text.secondary">
           {cert.issuer}
         </Typography>
-        <Typography variant="caption" sx={{ color: palette.accent, fontWeight: 700 }}>
+        <Typography variant="caption" sx={{ color: isAchievement ? '#B8860B' : palette.accent, fontWeight: 700 }}>
           {cert.year}
         </Typography>
       </Box>

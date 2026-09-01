@@ -2,6 +2,7 @@ import { Box, Container, Grid, List, ListItem, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { SectionTitle } from '../atoms/SectionTitle'
+import { AcademicAchievementCard } from '../molecules/AcademicAchievementCard'
 import { useProfile } from '../../data/profile'
 import { palette } from '../../theme/theme'
 
@@ -23,9 +24,11 @@ export function ProfileSection() {
         <Typography variant="body1" sx={{ mb: 2 }} data-aos="fade-up">
           {profile.summary}
         </Typography>
-        <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary' }} data-aos="fade-up">
+        <Typography variant="body1" sx={{ mb: 0, color: 'text.secondary' }} data-aos="fade-up">
           {profile.differentiator}
         </Typography>
+
+        <AcademicAchievementCard />
 
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} md={4} data-aos="fade-right">

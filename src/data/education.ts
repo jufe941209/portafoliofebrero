@@ -11,6 +11,7 @@ export interface CertificationItem {
   title: string
   issuer: string
   year: string
+  variant?: 'default' | 'achievement'
 }
 
 export interface LanguageItem {
@@ -75,6 +76,12 @@ const educationByLocale: Record<Locale, EducationItem[]> = {
 
 const certificationsByLocale: Record<Locale, CertificationItem[]> = {
   es: [
+    {
+      title: 'Saber TyT (ICFES) — Puntaje 141/200',
+      issuer: 'Percentil 100 nacional · Percentil 99 en Ingeniería de Sistemas y Telemática',
+      year: '2026',
+      variant: 'achievement',
+    },
     { title: 'Certificación en Data Analytics', issuer: 'ITCertificate', year: '2025' },
     { title: 'Certificación Profesional en Big Data', issuer: 'ITCertificate', year: '2025' },
     { title: 'Diplomado en Ciencia de Datos', issuer: 'Talento Tech', year: '2024' },
@@ -82,6 +89,12 @@ const certificationsByLocale: Record<Locale, CertificationItem[]> = {
     { title: 'Programación Web Nivel Intermedio', issuer: 'Universidad de Los Andes', year: '2023' },
   ],
   en: [
+    {
+      title: 'Saber TyT (ICFES) — Score 141/200',
+      issuer: '100th percentile nationally · 99th percentile in Systems & Telematics Engineering',
+      year: '2026',
+      variant: 'achievement',
+    },
     { title: 'Data Analytics Certification', issuer: 'ITCertificate', year: '2025' },
     { title: 'Professional Big Data Certification', issuer: 'ITCertificate', year: '2025' },
     { title: 'Data Science Diploma', issuer: 'Talento Tech', year: '2024' },

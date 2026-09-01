@@ -99,7 +99,7 @@ const skillGroupsByLocale: Record<Locale, SkillGroup[]> = {
         'Diagramas de Flujo de Procesos (Sistemas ADK)',
         'Manuales Técnicos',
         'Manuales de Usuario',
-        'Manuales Caza fallas',
+        'Manuales de Caza de Fallas',
         'Actas de Entrega',
       ],
     },

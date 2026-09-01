@@ -20,7 +20,7 @@ const base = {
   links: {
     linkedin: 'https://www.linkedin.com/in/julianfuentesclavijo',
     github: 'https://github.com/jufe941209',
-    portfolio: 'https://portafoliofebrero.vercel.app',
+    portfolio: 'https://portafoliojulianfuentesclavijo.vercel.app',
     newlife: 'https://new-life-iota.vercel.app',
   },
 }
@@ -40,7 +40,7 @@ const content: Record<Locale, ProfileContent> = {
     degree: 'Profesional',
     freelance: 'Disponible',
     summary: `Desarrollador Fullstack con 2+ años de experiencia en desarrollo — 1+ año en producción en CUN construyendo plataformas Angular institucionales para más de 2.500 usuarios, y 1 año como Desarrollador Fullstack en proyectos freelance con React, Next.js y .NET/C#. Profesional en Cultura Física, Deporte y Recreación (Universidad Santo Tomás) con intercambio académico y tesis en la Universidad de Las Palmas de Gran Canaria, España.`,
-    differentiator: `Diferenciador clave: transición deliberada del entrenamiento deportivo de elite al desarrollo de software — demostrando learnability excepcional, resiliencia bajo presión y mentalidad de producto centrada en el usuario. Disponible para trabajo remoto, async-first, con equipos internacionales.`,
+    differentiator: `Diferenciador clave: transición deliberada del entrenamiento deportivo de élite al desarrollo de software — demostrando capacidad de aprendizaje excepcional, resiliencia bajo presión y mentalidad de producto centrada en el usuario. Disponible para trabajo remoto, async-first, con equipos internacionales.`,
   },
   en: {
     title: 'Fullstack Developer | Angular | React | TypeScript | .NET/C# | AI & Data',

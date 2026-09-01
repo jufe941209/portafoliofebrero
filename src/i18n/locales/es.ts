@@ -68,7 +68,7 @@ export const es = {
     featuredMockFeatures: ['Catálogo', 'Login por rol', 'Portal domiciliario', 'Panel admin'],
   },
   certifications: {
-    title: 'Certificaciones',
+    title: 'Certificaciones y Resultados Académicos',
     subtitle: 'Formación continua en datos, IA y desarrollo de software.',
     languages: 'Idiomas',
   },
