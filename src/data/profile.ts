@@ -14,8 +14,8 @@ const base = {
   phone: '+57 305 465 6044',
   email: 'henjulian11@outlook.com',
   location: 'Bogotá, Colombia',
-  avatar: '/img/perfil.jpg',
-  photo: '/img/yo.jpg',
+  avatar: '/img/perfil.webp',
+  photo: '/img/yo.webp',
   cvUrl: '/cv/Henry-Julian-Fuentes-Clavijo-CV.pdf',
   links: {
     linkedin: 'https://www.linkedin.com/in/julianfuentesclavijo',

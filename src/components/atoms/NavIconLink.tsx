@@ -16,7 +16,8 @@ export function NavIconLink({ href, icon: Icon, label, active, onClick }: NavIco
       sx={{
         color: active ? '#fff' : 'rgba(255,255,255,0.6)',
         borderRadius: 1,
-        mb: 0.5,
+        py: 0.75,
+        mb: 0.25,
         '&:hover': { color: '#fff' },
       }}
     >

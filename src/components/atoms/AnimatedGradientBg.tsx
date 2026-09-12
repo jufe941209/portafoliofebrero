@@ -41,6 +41,8 @@ export function AnimatedGradientBg() {
           filter: 'blur(60px)',
           opacity: 0.7,
           animation: `${float1} 18s ease-in-out infinite`,
+          willChange: 'transform',
+          '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
         }}
       />
       <Box
@@ -55,6 +57,8 @@ export function AnimatedGradientBg() {
           filter: 'blur(70px)',
           opacity: 0.6,
           animation: `${float2} 22s ease-in-out infinite`,
+          willChange: 'transform',
+          '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
         }}
       />
       <Box
@@ -69,6 +73,8 @@ export function AnimatedGradientBg() {
           filter: 'blur(60px)',
           opacity: 0.45,
           animation: `${float3} 15s ease-in-out infinite`,
+          willChange: 'transform',
+          '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
         }}
       />
       <Box

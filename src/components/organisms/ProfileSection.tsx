@@ -36,7 +36,11 @@ export function ProfileSection() {
               component="img"
               src={profile.photo}
               alt={profile.name}
-              sx={{ width: '100%', borderRadius: 2 }}
+              loading="lazy"
+              decoding="async"
+              width={688}
+              height={700}
+              sx={{ width: '100%', height: 'auto', borderRadius: 2 }}
             />
           </Grid>
           <Grid item xs={12} md={8} data-aos="fade-left">

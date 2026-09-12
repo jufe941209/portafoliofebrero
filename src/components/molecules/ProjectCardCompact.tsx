@@ -23,6 +23,8 @@ export function ProjectCardCompact({ project, onOpen }: ProjectCardCompactProps)
                 component="img"
                 image={project.image}
                 alt={project.title}
+                loading="lazy"
+                decoding="async"
                 sx={{ height: 160, objectFit: 'cover' }}
               />
             ) : (

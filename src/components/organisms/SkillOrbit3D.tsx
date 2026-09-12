@@ -71,7 +71,9 @@ export function SkillOrbit3D({ items }: SkillOrbit3DProps) {
           height: 1,
           transformStyle: 'preserve-3d',
           animation: `${spin} 26s linear infinite`,
+          willChange: 'transform',
           '&:hover': { animationPlayState: 'paused' },
+          '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
         }}
       >
         {items.map((item, index) => (

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Box, Chip, Stack, Typography } from '@mui/material'
+import { Box, Chip, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { AnimatedGradientBg } from '../atoms/AnimatedGradientBg'
 import { TypedRole } from '../molecules/TypedRole'
@@ -13,6 +13,12 @@ export function HeroSection() {
   const { t } = useTranslation()
   const profile = useProfile()
   const highlights = t('hero.highlights', { returnObjects: true }) as string[]
+  const theme = useTheme()
+  // Skip downloading/rendering the WebGL scene on small screens and for users
+  // who asked for less motion — it's purely decorative and the heaviest chunk on the page.
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+  const show3D = isDesktop && !prefersReducedMotion
 
   return (
     <Box
@@ -33,11 +39,13 @@ export function HeroSection() {
     >
       <AnimatedGradientBg />
 
-      <Box sx={{ position: 'absolute', inset: 0, opacity: { xs: 0.45, md: 0.7 } }}>
-        <Suspense fallback={null}>
-          <Hero3DObject />
-        </Suspense>
-      </Box>
+      {show3D && (
+        <Box sx={{ position: 'absolute', inset: 0, opacity: 0.7 }}>
+          <Suspense fallback={null}>
+            <Hero3DObject />
+          </Suspense>
+        </Box>
+      )}
 
       <Box
         sx={{

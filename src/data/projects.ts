@@ -69,7 +69,7 @@ const compactProjectsByLocale: Record<Locale, CompactProject[]> = {
         'Interfaz de e-commerce para un negocio gastronómico: catálogo de productos, navegación por categorías y flujo de compra pensado para pedidos en línea.',
       url: 'https://front-end-gastronomia.vercel.app/',
       stack: ['React', 'JavaScript', 'CSS3'],
-      image: '/img/portfolio/gastronomia.png',
+      image: '/img/portfolio/gastronomia.webp',
     },
     {
       title: 'Portafolio anterior',
@@ -78,7 +78,7 @@ const compactProjectsByLocale: Record<Locale, CompactProject[]> = {
         'Primera versión en producción de este portafolio: sitio estático con perfil profesional, habilidades, experiencia y formulario de contacto, antes de la migración a React + MUI.',
       url: 'https://portafoliofebrero.vercel.app/',
       stack: ['HTML5', 'CSS3', 'Bootstrap', 'JavaScript'],
-      image: '/img/portfolio/portafolio-anterior.png',
+      image: '/img/portfolio/portafolio-anterior.webp',
     },
     {
       title: 'Prueba Técnica Frontend',
@@ -115,7 +115,7 @@ const compactProjectsByLocale: Record<Locale, CompactProject[]> = {
         'E-commerce interface for a food business: product catalog, category browsing and a checkout flow designed for online ordering.',
       url: 'https://front-end-gastronomia.vercel.app/',
       stack: ['React', 'JavaScript', 'CSS3'],
-      image: '/img/portfolio/gastronomia.png',
+      image: '/img/portfolio/gastronomia.webp',
     },
     {
       title: 'Previous Portfolio',
@@ -124,7 +124,7 @@ const compactProjectsByLocale: Record<Locale, CompactProject[]> = {
         'First production version of this portfolio: a static site with a professional profile, skills, experience and a contact form, before the migration to React + MUI.',
       url: 'https://portafoliofebrero.vercel.app/',
       stack: ['HTML5', 'CSS3', 'Bootstrap', 'JavaScript'],
-      image: '/img/portfolio/portafolio-anterior.png',
+      image: '/img/portfolio/portafolio-anterior.webp',
     },
     {
       title: 'Frontend Technical Assessment',

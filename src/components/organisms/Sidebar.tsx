@@ -40,7 +40,7 @@ export function Sidebar() {
   const content = (
     <Box sx={{ backgroundImage: palette.sidebarGradient, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <SidebarProfile />
-      <List component="nav" sx={{ px: 2, flex: 1 }}>
+      <List component="nav" sx={{ px: 2, py: 0.5, flex: 1, minHeight: 0, overflowY: 'auto' }}>
         {navItems.map((item) => (
           <NavIconLink
             key={item.id}

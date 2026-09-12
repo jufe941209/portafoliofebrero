@@ -30,7 +30,7 @@ function SaturnPlanet() {
     <Float speed={1.6} rotationIntensity={0.35} floatIntensity={1.1}>
       {/* Planeta */}
       <mesh ref={planetRef}>
-        <sphereGeometry args={[1.35, 64, 64]} />
+        <sphereGeometry args={[1.35, 48, 48]} />
         <MeshDistortMaterial
           color={palette.accent}
           emissive={palette.accent}
@@ -76,7 +76,7 @@ function SaturnPlanet() {
         </mesh>
       </group>
 
-      <Sparkles count={40} scale={4.5} size={2.5} speed={0.3} opacity={0.7} color={palette.accent} />
+      <Sparkles count={24} scale={4.5} size={2.5} speed={0.3} opacity={0.7} color={palette.accent} />
     </Float>
   )
 }
@@ -84,16 +84,16 @@ function SaturnPlanet() {
 export function Hero3DObject() {
   return (
     <Canvas
-      dpr={[1, 1.6]}
+      dpr={[1, 1.5]}
       camera={{ position: [0, 0.6, 6.5], fov: 45 }}
-      gl={{ alpha: true, antialias: true }}
+      gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}
       onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
       style={{ position: 'absolute', inset: 0 }}
     >
       <ambientLight intensity={0.4} />
       <pointLight position={[4, 4, 4]} intensity={1.6} color={palette.accent} />
       <pointLight position={[-4, -3, -2]} intensity={1.2} color={palette.brandEnd} />
-      <Stars radius={45} depth={25} count={2200} factor={2.5} saturation={0} fade speed={0.6} />
+      <Stars radius={45} depth={25} count={1200} factor={2.5} saturation={0} fade speed={0.6} />
       <Suspense fallback={null}>
         <SaturnPlanet />
       </Suspense>
